@@ -18,6 +18,12 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Antonio Vega Alvarez",
+            "email": "toni@bluengo.com",
+            "homepage": "https://github.com/tonivega",
+            "role": "Developer"
+        },
+        {
             "name": "Mostafa Maklad",
             "email": "dev.mostafa.maklad@gmail.com",
             "homepage": "https://github.com/mostafamaklad",
