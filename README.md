@@ -1,16 +1,8 @@
-[![ReadMeSupportPalestine](https://raw.githubusercontent.com/Safouene1/support-palestine-banner/master/banner-support.svg)](https://sahem.ksrelief.org/Pages/ProgramDetails/1ca8852b-9e6d-ee11-b83f-005056ac5498)
-# laravel-permission-mongodb
+# laravel-permission-mongodb (tonivega) laravel 10, 11 and 12
 
-[![Latest Version on Packagist][ico-version]][link-releases]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Scrutinizer][ico-scrutinizer]][link-scrutinizer]
-[![Maintainability][ico-codeclimate-maintainability]][link-codeclimate-maintainability]
-[![Codacy Badge][ico-codacy]][link-codacy]
-[![StyleCI][ico-styleci]][link-styleci]
-[![Coverage Status][ico-coveralls]][link-coveralls]
-[![Total Downloads][ico-downloads]][link-packagist]
-[![StandWithPalestine](https://raw.githubusercontent.com/Safouene1/support-palestine-banner/master/StandWithPalestine.svg)](https://sahem.ksrelief.org/Pages/ProgramDetails/1ca8852b-9e6d-ee11-b83f-005056ac5498)
+## support available at https://www.laravelhq.com
+
+
 
 This package allows you to manage user permissions and roles in a database.
 It is inspired from [laravel-permission][link-laravel-permission]. Same code same every thing but it is compatible with [laravel-mongodb][link-laravel-mongodb]
@@ -68,13 +60,11 @@ $user->can('edit articles');
 
 ### Laravel Compatibility
 
- Laravel  | Package
+ Laravel  | Package Tag
 :---------|:----------
- 5.x      | 1.x or 2.x or 3.x
- 6.x      | 2.x or 3.x
- 7.x      | 3.x
- 8.x      | 3.1.x
- 9.x      | 4.x
+ 10.x      | v10
+ 11.x      | v11
+ 12.x      | v12
 
 ### Laravel
 
@@ -417,7 +407,7 @@ $user->hasAllRoles(Role::all());
 ```
 
 The `assignRole`, `hasRole`, `hasAnyRole`, `hasAllRoles`  and `removeRole` functions can accept a
- string, a `\Maklad\Permission\Models\Role` object or an `\Illuminate\Support\Collection` object.
+string, a `\Maklad\Permission\Models\Role` object or an `\Illuminate\Support\Collection` object.
 
 A permission can be given to a role:
 
@@ -441,7 +431,7 @@ The `givePermissionTo` and `revokePermissionTo` functions can accept a
 string or a `Maklad\Permission\Models\Permission` object.
 
 Permissions are inherited from roles automatically.
-Additionally, individual permissions can be assigned to the user too. 
+Additionally, individual permissions can be assigned to the user too.
 
 For instance:
 
@@ -771,6 +761,7 @@ If you discover any security-related issues, please email dev.mostafa.maklad@gma
 
 ## Credits
 
+- [Toni Vega][link-tonivega]
 - [Freek Van der Herten][link-freekmurze]
 - [Mostafa Maklad][link-author]
 - [All Contributors][link-contributors]
@@ -832,3 +823,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-laravel-permission]: https://github.com/spatie/laravel-permission
 [link-laravel-mongodb]: https://github.com/jenssegers/laravel-mongodb
 [link-freekmurze]: https://github.com/freekmurze
+[link-tonivega]: https://github.com/tonivega
