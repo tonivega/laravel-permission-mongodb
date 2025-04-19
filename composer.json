@@ -1,6 +1,6 @@
 {
     "name": "tonivega/laravel-permission-mongodb",
-    "description": "Permission handling for Laravel 5.2 and up using mongodb",
+    "description": "Permission handling for Laravel 10, 11 and 12 using mongodb",
     "version": "12.0",
     "type": "library",
     "keywords": [
