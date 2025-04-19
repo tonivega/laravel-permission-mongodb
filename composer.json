@@ -1,5 +1,5 @@
 {
-    "name": "toni/laravel-permission-mongodb",
+    "name": "tonivega/laravel-permission-mongodb",
     "description": "Permission handling for Laravel 5.2 and up using mongodb",
     "version": "12.0",
     "type": "library",
