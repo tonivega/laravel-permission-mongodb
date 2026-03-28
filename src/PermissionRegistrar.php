@@ -33,9 +33,26 @@ class PermissionRegistrar
     public function __construct(Gate $gate, Repository $cache)
     {
         $this->gate = $gate;
-        $this->cache = $cache;
         $this->permissionClass = config('permission.models.permission');
         $this->roleClass = config('permission.models.role');
+
+        $this->cache = $this->getCacheStoreFromConfig();
+    }
+
+    /**
+     * Get the cache store from the permission configuration.
+     *
+     * @return Repository
+     */
+    protected function getCacheStoreFromConfig(): Repository
+    {
+        $cacheDriver = config('permission.cache.store', 'default');
+
+        if ($cacheDriver === 'default') {
+            return $cache ?? app('cache.store');
+        }
+
+        return app('cache')->store($cacheDriver);
     }
 
     /**
