@@ -2,8 +2,8 @@
 
 namespace Maklad\Permission\Traits;
 
+use Maklad\Permission\PermissionRegistrar;
 use function app;
-use function config;
 
 /**
  * Trait RefreshesPermissionCache
@@ -19,11 +19,11 @@ trait RefreshesPermissionCache
     public static function bootRefreshesPermissionCache(): void
     {
         static::saved(function () {
-            app(config('permission.models.permission'))->forgetCachedPermissions();
+            app(PermissionRegistrar::class)->forgetCachedPermissions();
         });
 
         static::deleted(function () {
-            app(config('permission.models.permission'))->forgetCachedPermissions();
+            app(PermissionRegistrar::class)->forgetCachedPermissions();
         });
     }
 }

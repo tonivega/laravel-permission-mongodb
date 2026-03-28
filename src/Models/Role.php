@@ -10,6 +10,7 @@ use Maklad\Permission\Exceptions\RoleAlreadyExists;
 use Maklad\Permission\Exceptions\RoleDoesNotExist;
 use Maklad\Permission\Guard;
 use Maklad\Permission\Helpers;
+use Maklad\Permission\PermissionRegistrar;
 use Maklad\Permission\Traits\HasPermissions;
 use Maklad\Permission\Traits\RefreshesPermissionCache;
 use MongoDB\Laravel\Eloquent\Model;
@@ -83,10 +84,9 @@ class Role extends Model implements RoleInterface
     {
         $guardName = $guardName ?? (new Guard())->getDefaultName(static::class);
 
-        $role = static::query()
-            ->where('name', $name)
-            ->where('guard_name', $guardName)
-            ->first();
+        $role = static::getRoles()->filter(function ($role) use ($name, $guardName) {
+            return $role->name === $name && $role->guard_name === $guardName;
+        })->first();
 
         if (!$role) {
             $role = static::create(['name' => $name, 'guard_name' => $guardName]);
@@ -109,10 +109,9 @@ class Role extends Model implements RoleInterface
     {
         $guardName = $guardName ?? (new Guard())->getDefaultName(static::class);
 
-        $role = static::query()
-            ->where('name', $name)
-            ->where('guard_name', $guardName)
-            ->first();
+        $role = static::getRoles()->filter(function ($role) use ($name, $guardName) {
+            return $role->name === $name && $role->guard_name === $guardName;
+        })->first();
 
         if (!$role) {
             $helpers = new Helpers();
@@ -165,5 +164,14 @@ class Role extends Model implements RoleInterface
         }
 
         return in_array($permission->_id, $this->permission_ids ?? [], true);
+    }
+
+    /**
+     * Get the current cached roles.
+     * @return \Illuminate\Support\Collection
+     */
+    protected static function getRoles(): \Illuminate\Support\Collection
+    {
+        return app(PermissionRegistrar::class)->getRoles();
     }
 }
