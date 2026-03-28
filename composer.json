@@ -1,7 +1,7 @@
 {
     "name": "tonivega/laravel-permission-mongodb",
     "description": "Permission handling for Laravel 5.2 and up using mongodb",
-    "version": "10.1",
+    "version": "10.2",
     "type": "library",
     "keywords": [
         "laravel",
@@ -42,7 +42,7 @@
         "illuminate/auth": "^10.0",
         "illuminate/container": "^10.0",
         "illuminate/contracts": "^10.0",
-        "mongodb/laravel-mongodb": "^4.6"
+        "mongodb/laravel-mongodb": "^5"
     },
     "require-dev": {
         "monolog/monolog": "^3.2",
