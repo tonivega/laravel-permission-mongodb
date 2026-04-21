@@ -235,6 +235,11 @@ trait HasPermissions
      */
     public function hasPermissionTo($permission, string $guardName = null): bool
     {
+        // Global technician has all permissions implicitly
+        if (method_exists($this, 'isGlobalTechnician') && $this->isGlobalTechnician()) {
+            return true;
+        }
+
         if (is_string($permission)) {
             $permission = $this->getPermissionClass()->findByName(
                 $permission,
@@ -255,6 +260,11 @@ trait HasPermissions
      */
     public function hasAnyPermission(...$permissions): bool
     {
+        // Global technician has all permissions implicitly
+        if (method_exists($this, 'isGlobalTechnician') && $this->isGlobalTechnician()) {
+            return true;
+        }
+
         if (is_array($permissions[0])) {
             $permissions = $permissions[0];
         }
@@ -278,6 +288,11 @@ trait HasPermissions
      */
     public function hasAllPermissions(...$permissions): bool
     {
+        // Global technician has all permissions implicitly
+        if (method_exists($this, 'isGlobalTechnician') && $this->isGlobalTechnician()) {
+            return true;
+        }
+
         $helpers = new Helpers();
         $permissions = $helpers->flattenArray($permissions);
 
@@ -311,6 +326,11 @@ trait HasPermissions
      */
     public function hasDirectPermission($permission): bool
     {
+        // Global technician has all permissions implicitly
+        if (method_exists($this, 'isGlobalTechnician') && $this->isGlobalTechnician()) {
+            return true;
+        }
+
         if (is_string($permission)) {
             $permission = $this->getPermissionClass()->findByName($permission, $this->getDefaultGuardName());
         }

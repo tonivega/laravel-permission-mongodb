@@ -42,7 +42,12 @@ class PermissionServiceProvider extends ServiceProvider
         $this->registerModelBindings();
 
         DB::connection()->getPdo();
-        app(PermissionRegistrar::class)->registerPermissions();
+
+        $registrar = app(PermissionRegistrar::class);
+        $registrar->registerPermissions();
+
+        // Pre-load roles into cache (and memento) at boot time
+        $registrar->getRoles();
     }
 
     public function register()
@@ -54,6 +59,13 @@ class PermissionServiceProvider extends ServiceProvider
                 'permission'
             );
         }
+
+        $this->app->singleton(PermissionRegistrar::class, function ($app) {
+            return new PermissionRegistrar(
+                $app->make(\Illuminate\Contracts\Auth\Access\Gate::class),
+                $app->make(\Illuminate\Contracts\Cache\Repository::class)
+            );
+        });
 
         $this->registerBladeExtensions();
     }

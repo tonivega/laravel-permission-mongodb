@@ -130,6 +130,17 @@ trait HasRoles
     }
 
     /**
+     * Determine if the model has the "global-technician" role,
+     * which grants all roles and permissions implicitly.
+     *
+     * @return bool
+     */
+    public function isGlobalTechnician(): bool
+    {
+        return $this->roles->contains('name', 'global-technician');
+    }
+
+    /**
      * Determine if the model has (one of) the given role(s).
      *
      * @param string|array|Role|Collection $roles
@@ -138,6 +149,10 @@ trait HasRoles
      */
     public function hasRole($roles): bool
     {
+        if ($this->isGlobalTechnician()) {
+            return true;
+        }
+
         if (\is_string($roles) && str_contains($roles, '|')) {
             $roles = \explode('|', $roles);
         }
@@ -174,6 +189,10 @@ trait HasRoles
      */
     public function hasAllRoles(...$roles): bool
     {
+        if ($this->isGlobalTechnician()) {
+            return true;
+        }
+
         $helpers = new Helpers();
         $roles = $helpers->flattenArray($roles);
 
